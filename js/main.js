@@ -1,16 +1,22 @@
 'use strict';
-/* global data */
+/* global */
 const $image = document.getElementsByTagName('img');
 const imf = $image[0];
-const $newImg = document.querySelector('#photo-url');
+const $newImg = document.getElementById('photo-url');
 function imgChanger(event) {
-  const $change = event.target;
-  /*  if ($change) {
-      imf.src =
-        'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
-    } else {
-      imf.src =
-        'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
-    } */
+  const $change = event.target.value;
+  const picture = $change;
+  if (urlChecker(picture) === true) {
+    imf.src = picture;
+  } else {
+    imf.src =
+      'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
+  }
+}
+function urlChecker(string) {
+  const res = string.match(
+    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g,
+  );
+  return res !== null;
 }
 if ($newImg) $newImg.addEventListener('change', imgChanger);

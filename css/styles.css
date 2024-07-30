@@ -1,5 +1,7 @@
 .row {
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 img {
@@ -27,14 +29,61 @@ input {
   left: 100%;
 }
 
+@media screen and (width > 0) {
+  p {
+    margin-bottom: 5px;
+  }
+
+  @media screen and (width > 424px) {
+    p {
+      margin-bottom: 6px;
+    }
+  }
+
+  @media screen and (width > 767px) {
+    p {
+      margin-bottom: 5px;
+    }
+  }
+}
+
 @media screen and (width > 567px) {
   .column-half {
     flex-basis: 50%;
   }
 }
 
-textarea {
-  margin-left: 10px;
+@media screen and (width > 0) {
+  textarea {
+    width: 275px;
+    height: 100px;
+    margin-top: 5px;
+    margin-left: 1px;
+  }
+}
+
+@media screen and (width > 374px) {
+  textarea {
+    width: 330px;
+    height: 50px;
+    margin-top: 7px;
+  }
+}
+
+@media screen and (width > 424px) {
+  textarea {
+    width: 380px;
+    height: 50px;
+  }
+}
+
+@media screen and (width > 767px) {
+  textarea {
+    width: 730px;
+    height: 150px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
 }
 
 h1 {

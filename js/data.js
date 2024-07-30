@@ -1,8 +1,8 @@
 'use strict';
 /* exported data */
-let data = {
+/* const data = {
   view: 'entry-form',
   entries: [],
   editing: null,
   nextEntryId: 1,
-};
+}; */
