@@ -52,3 +52,4 @@ $form.addEventListener('submit', (event: Event) => {
   const photoReset = '/images/placeholder-image-square.jpg';
   imf.src = photoReset;
 });
+if (!$form) throw new Error('The Form did now load');
