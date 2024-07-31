@@ -1,11 +1,12 @@
 'use strict';
-/* global */
+/* global data */
 const $image = document.getElementsByTagName('img');
 const imf = $image[0];
 const $newImg = document.getElementById('photo-url');
+const $form = document.querySelector('#form');
 function imgChanger(event) {
-  const $change = event.target.value;
-  const picture = $change;
+  const $change = event.target;
+  const picture = $change.value;
   if (urlChecker(picture) === true) {
     imf.src = picture;
   } else {
@@ -20,3 +21,34 @@ function urlChecker(string) {
   return res !== null;
 }
 if ($newImg) $newImg.addEventListener('change', imgChanger);
+if (!$newImg) throw new Error('The Image did not load.');
+$form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const $formElements = $form.elements;
+  const $titleInput = $formElements.title.value;
+  console.log($titleInput);
+  const $photoInput = $formElements.photoUrl.value;
+  console.log($photoInput);
+  const $noteInput = $formElements.notes.value;
+  console.log($noteInput);
+  let entryId = 1;
+  const entries = {
+    image: $photoInput,
+    title: $titleInput,
+    photoURL: $photoInput,
+    note: $noteInput,
+  };
+  console.log(entries);
+  const data = {
+    view: 'entry-form',
+    entries: [entries],
+    editing: null,
+    nextEntryId: entryId,
+  };
+  console.log(data);
+  writeData();
+  entryId++;
+  $form.reset();
+  const photoReset = '/images/placeholder-image-square.jpg';
+  imf.src = photoReset;
+});
