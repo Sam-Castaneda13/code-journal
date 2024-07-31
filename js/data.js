@@ -1,3 +1,4 @@
+'use strict';
 /* exported data
 
 const data = {
