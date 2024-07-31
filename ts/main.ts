@@ -1,4 +1,4 @@
-/* global */
+/* global data */
 
 interface FormElements extends HTMLFormControlsCollection {
   photoUrl: HTMLInputElement;
@@ -36,27 +36,18 @@ $form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
   const $formElements = $form.elements as FormElements;
   const $titleInput = $formElements.title.value;
-  console.log($titleInput);
   const $photoInput = $formElements.photoUrl.value;
-  console.log($photoInput);
   const $noteInput = $formElements.notes.value;
-  console.log($noteInput);
-  let entryId = 1;
-  const entries = {
+  // we are not reassigning data here, we should be creating an entry object and adding to our entries property of te data object
+  data.entries.push({
     image: $photoInput,
     title: $titleInput,
     photoURL: $photoInput,
     note: $noteInput,
-  };
-  console.log(entries);
-  const data = {
-    view: 'entry-form',
-    entries: [entries],
-    editing: null,
-    nextEntryId: entryId,
-  };
-  console.log(data);
-  entryId++;
+    entryId: data.nextEntryId,
+  });
+  data.nextEntryId++;
+  writeData();
   $form.reset();
   const photoReset = '/images/placeholder-image-square.jpg';
   imf.src = photoReset;
