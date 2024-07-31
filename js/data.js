@@ -7,7 +7,6 @@ let data = {
   editing: null,
   nextEntryId: 1,
 };
-data = readData();
 function writeData() {
   const dataJson = JSON.stringify(data);
   localStorage.setItem('Entries', dataJson);
@@ -18,6 +17,7 @@ function readData() {
     return JSON.parse(JSONData);
   } else {
     // change this return to be an object that looks like the data object
-    return { view: '', entries: [], editing: undefined, nextEntryId: 0 };
+    return { view: 'entry-form', entries: [], editing: null, nextEntryId: 1 };
   }
 }
+data = readData();
