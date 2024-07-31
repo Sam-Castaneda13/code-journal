@@ -6,18 +6,16 @@ interface FormElements extends HTMLFormControlsCollection {
   notes: HTMLTextAreaElement;
 }
 
-const $image = document.getElementsByTagName('img');
-const imf = $image[0] as HTMLImageElement;
+const $image = document.querySelector('#img') as HTMLImageElement;
 const $newImg = document.getElementById('photo-url') as HTMLInputElement;
 const $form = document.querySelector('#form') as HTMLFormElement;
-
 function imgChanger(event: Event): void {
-  const $change = event.target as HTMLInputElement;
-  const picture = $change.value;
-  if (urlChecker(picture) === true) {
-    imf.src = picture;
+  const $eventTarget = event.target as HTMLInputElement;
+  const $eventTargetURL = $eventTarget.value;
+  if (urlChecker($eventTargetURL)) {
+    $image.src = $eventTargetURL;
   } else {
-    imf.src =
+    $image.src =
       'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
   }
 }
@@ -29,20 +27,19 @@ function urlChecker(string: string): boolean {
   return res !== null;
 }
 
-if ($newImg) $newImg.addEventListener('change', imgChanger);
 if (!$newImg) throw new Error('The Image did not load.');
+if ($newImg) $newImg.addEventListener('change', imgChanger);
 
+if (!$form) throw new Error('The Form did now load');
 $form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
   const $formElements = $form.elements as FormElements;
   const $titleInput = $formElements.title.value;
   const $photoInput = $formElements.photoUrl.value;
   const $noteInput = $formElements.notes.value;
-  // we are not reassigning data here, we should be creating an entry object and adding to our entries property of te data object
   data.entries.push({
     image: $photoInput,
     title: $titleInput,
-    photoURL: $photoInput,
     note: $noteInput,
     entryId: data.nextEntryId,
   });
@@ -50,6 +47,5 @@ $form.addEventListener('submit', (event: Event) => {
   writeData();
   $form.reset();
   const photoReset = '/images/placeholder-image-square.jpg';
-  imf.src = photoReset;
+  $image.src = photoReset;
 });
-if (!$form) throw new Error('The Form did now load');

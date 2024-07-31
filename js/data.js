@@ -16,7 +16,6 @@ function readData() {
   if (JSONData) {
     return JSON.parse(JSONData);
   } else {
-    // change this return to be an object that looks like the data object
     return { view: 'entry-form', entries: [], editing: null, nextEntryId: 1 };
   }
 }

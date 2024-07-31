@@ -1,12 +1,9 @@
 /* exported data */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-// need an interface for the data object
-// need an interface for the entries (singular Entry object).. what properties should this have?
 interface Entry {
   image: string;
   title: string;
-  photoURL: string;
   note: string;
   entryId: number;
 }
@@ -35,7 +32,6 @@ function readData(): Data {
   if (JSONData) {
     return JSON.parse(JSONData);
   } else {
-    // change this return to be an object that looks like the data object
     return { view: 'entry-form', entries: [], editing: null, nextEntryId: 1 };
   }
 }
