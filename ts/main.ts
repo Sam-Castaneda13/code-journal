@@ -1,4 +1,4 @@
-/* global  */
+/* global data */
 
 interface FormElements extends HTMLFormControlsCollection {
   photoUrl: HTMLInputElement;
@@ -6,18 +6,16 @@ interface FormElements extends HTMLFormControlsCollection {
   notes: HTMLTextAreaElement;
 }
 
-const $image = document.getElementsByTagName('img');
-const imf = $image[0] as HTMLImageElement;
+const $image = document.querySelector('#img') as HTMLImageElement;
 const $newImg = document.getElementById('photo-url') as HTMLInputElement;
 const $form = document.querySelector('#form') as HTMLFormElement;
-
 function imgChanger(event: Event): void {
-  const $change = event.target as HTMLInputElement;
-  const picture = $change.value;
-  if (urlChecker(picture) === true) {
-    imf.src = picture;
+  const $eventTarget = event.target as HTMLInputElement;
+  const $eventTargetURL = $eventTarget.value;
+  if (urlChecker($eventTargetURL)) {
+    $image.src = $eventTargetURL;
   } else {
-    imf.src =
+    $image.src =
       'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
   }
 }
@@ -29,35 +27,25 @@ function urlChecker(string: string): boolean {
   return res !== null;
 }
 
-if ($newImg) $newImg.addEventListener('change', imgChanger);
 if (!$newImg) throw new Error('The Image did not load.');
+$newImg.addEventListener('change', imgChanger);
 
+if (!$form) throw new Error('The Form did now load');
 $form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
   const $formElements = $form.elements as FormElements;
   const $titleInput = $formElements.title.value;
-  console.log($titleInput);
   const $photoInput = $formElements.photoUrl.value;
-  console.log($photoInput);
   const $noteInput = $formElements.notes.value;
-  console.log($noteInput);
-  let entryId = 1;
-  const entries = {
+  data.entries.push({
     image: $photoInput,
     title: $titleInput,
-    photoURL: $photoInput,
     note: $noteInput,
-  };
-  console.log(entries);
-  const data = {
-    view: 'entry-form',
-    entries: [entries],
-    editing: null,
-    nextEntryId: entryId,
-  };
-  console.log(data);
-  entryId++;
+    entryId: data.nextEntryId,
+  });
+  data.nextEntryId++;
+  writeData();
   $form.reset();
   const photoReset = '/images/placeholder-image-square.jpg';
-  imf.src = photoReset;
+  $image.src = photoReset;
 });

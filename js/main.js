@@ -1,16 +1,15 @@
 'use strict';
 /* global data */
-const $image = document.getElementsByTagName('img');
-const imf = $image[0];
+const $image = document.querySelector('#img');
 const $newImg = document.getElementById('photo-url');
 const $form = document.querySelector('#form');
 function imgChanger(event) {
-  const $change = event.target;
-  const picture = $change.value;
-  if (urlChecker(picture) === true) {
-    imf.src = picture;
+  const $eventTarget = event.target;
+  const $eventTargetURL = $eventTarget.value;
+  if (urlChecker($eventTargetURL)) {
+    $image.src = $eventTargetURL;
   } else {
-    imf.src =
+    $image.src =
       'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/403.png';
   }
 }
@@ -20,35 +19,24 @@ function urlChecker(string) {
   );
   return res !== null;
 }
-if ($newImg) $newImg.addEventListener('change', imgChanger);
 if (!$newImg) throw new Error('The Image did not load.');
+$newImg.addEventListener('change', imgChanger);
+if (!$form) throw new Error('The Form did now load');
 $form.addEventListener('submit', (event) => {
   event.preventDefault();
   const $formElements = $form.elements;
   const $titleInput = $formElements.title.value;
-  console.log($titleInput);
   const $photoInput = $formElements.photoUrl.value;
-  console.log($photoInput);
   const $noteInput = $formElements.notes.value;
-  console.log($noteInput);
-  let entryId = 1;
-  const entries = {
+  data.entries.push({
     image: $photoInput,
     title: $titleInput,
-    photoURL: $photoInput,
     note: $noteInput,
-  };
-  console.log(entries);
-  const data = {
-    view: 'entry-form',
-    entries: [entries],
-    editing: null,
-    nextEntryId: entryId,
-  };
-  console.log(data);
+    entryId: data.nextEntryId,
+  });
+  data.nextEntryId++;
   writeData();
-  entryId++;
   $form.reset();
   const photoReset = '/images/placeholder-image-square.jpg';
-  imf.src = photoReset;
+  $image.src = photoReset;
 });

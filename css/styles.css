@@ -1,7 +1,5 @@
 .row {
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
 }
 
 img {
@@ -18,77 +16,55 @@ header {
   color: white;
 }
 
+.full-column {
+  flex-basis: 100%;
+}
+
 input {
-  margin-left: 1px;
-  margin-top: 7px;
+  border: lightgray solid;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.button {
-  margin-left: 300px;
+input:hover {
+  border-color: #4c2676;
 }
 
-@media screen and (width > 0) {
-  p {
-    margin-bottom: 5px;
-  }
-
-  @media screen and (width > 424px) {
-    p {
-      margin-bottom: 6px;
-    }
-  }
-
-  @media screen and (width > 767px) {
-    p {
-      margin-bottom: 5px;
-    }
-  }
+input:focus {
+  outline: none;
+  border-color: #4c2676;
 }
 
-@media screen and (width > 567px) {
-  .column-half {
-    flex-basis: 50%;
-  }
+textarea {
+  border-color: lightgray;
+  border-radius: 5px;
+  border-width: 2px;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 50px;
 }
 
-@media screen and (width > 0) {
-  textarea {
-    width: 275px;
-    height: 100px;
-    margin-top: 5px;
-    margin-left: 1px;
-  }
+textarea:hover {
+  border-color: #4c2676;
 }
 
-@media screen and (width > 374px) {
-  textarea {
-    width: 330px;
-    height: 50px;
-    margin-top: 7px;
-  }
+textarea:focus {
+  outline: none;
+  border-color: #4c2676;
 }
 
-@media screen and (width > 424px) {
-  textarea {
-    width: 380px;
-    height: 50px;
-  }
+.full-column button {
+  border-color: black;
+  margin-top: 50px;
+  color: white;
+  background-color: #4c2676;
+  float: right;
 }
 
-@media screen and (width > 767px) {
-  textarea {
-    width: 730px;
-    height: 150px;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-}
-
+label[for='notes'],
 h1 {
-  margin-left: 10px;
-}
-
-.note {
   margin-left: 10px;
 }
