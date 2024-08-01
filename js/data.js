@@ -1,33 +1,17 @@
+'use strict';
 /* exported data */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-interface Entry {
-  image: string;
-  title: string;
-  note: string;
-  entryId: number;
-}
-
-interface Data {
-  view: string;
-  entries: Entry[];
-  editing: unknown;
-  nextEntryId: number;
-}
-
-let data: Data = {
+let data = {
   view: 'entry-form',
   entries: [],
   editing: null,
   nextEntryId: 1,
 };
-
-function writeData(): void {
+function writeData() {
   const dataJson = JSON.stringify(data);
   localStorage.setItem('Entries', dataJson);
 }
-
-function readData(): Data {
+function readData() {
   const JSONData = localStorage.getItem('Entries');
   if (JSONData) {
     return JSON.parse(JSONData);
@@ -35,5 +19,4 @@ function readData(): Data {
     return { view: 'entry-form', entries: [], editing: null, nextEntryId: 1 };
   }
 }
-
 data = readData();
