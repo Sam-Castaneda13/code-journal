@@ -20,7 +20,7 @@ function urlChecker(string) {
   return res !== null;
 }
 if (!$newImg) throw new Error('The Image did not load.');
-if ($newImg) $newImg.addEventListener('change', imgChanger);
+$newImg.addEventListener('change', imgChanger);
 if (!$form) throw new Error('The Form did now load');
 $form.addEventListener('submit', (event) => {
   event.preventDefault();

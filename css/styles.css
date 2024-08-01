@@ -20,29 +20,40 @@ header {
   flex-basis: 100%;
 }
 
-@media screen and (width > 567px) {
-  .column-half {
-    flex-basis: 50%;
-    margin-bottom: 15px;
-  }
-}
-
 input {
-  border-color: black;
+  border: lightgray solid;
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-textarea {
+input:hover {
   border-color: #4c2676;
-  border-radius: 10px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4c2676;
+}
+
+textarea {
+  border-color: lightgray;
+  border-radius: 5px;
   border-width: 2px;
-  width: 100% !important;
+  width: 100%;
   height: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 50px;
+}
+
+textarea:hover {
+  border-color: #4c2676;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4c2676;
 }
 
 .full-column button {
